@@ -110,14 +110,20 @@ def call_list(dict_instruc,i,list_print,list_var,list_labels,dict_instuc_main):
     if a_chk_instruction_reg_name("instruction",dict_instruc[i][0]):
         return 1
     if dict_instruc[i][0]=="add":
+        if len(dict_instruc[i])>4:
+            raise 
         if a_chk_instruction_reg_name("register",dict_instruc[i][1]) or a_chk_instruction_reg_name("register",dict_instruc[i][2]) or a_chk_instruction_reg_name("register",dict_instruc[i][3]):
             return 1
         list_print.append(addition(dict_instruc[i][1],dict_instruc[i][2],dict_instruc[i][3],dict_opcode,dict_register))
     elif dict_instruc[i][0]=="sub":
+        if len(dict_instruc[i])>4:
+            raise 
         if a_chk_instruction_reg_name("register",dict_instruc[i][1]) or a_chk_instruction_reg_name("register",dict_instruc[i][2]) or a_chk_instruction_reg_name("register",dict_instruc[i][3]):
             return 1
         list_print.append(subtraction(dict_instruc[i][1],dict_instruc[i][2],dict_instruc[i][3],dict_opcode,dict_register))
     elif dict_instruc[i][0]=="mov":
+        if len(dict_instruc[i])>3:
+            raise 
         if "$" in dict_instruc[i][2]:
             if a_chk_instruction_reg_name("register",dict_instruc[i][1]) or e_chkimmediate(dict_instruc[i][2]):
                 return 1
@@ -127,78 +133,110 @@ def call_list(dict_instruc,i,list_print,list_var,list_labels,dict_instuc_main):
                 return 1
             list_print.append(movereg(dict_instruc[i][1],dict_instruc[i][2],dict_opcode,dict_register))
     elif dict_instruc[i][0]=="ld":
+        if len(dict_instruc[i])>3:
+            raise 
         if f_chkvar_label(dict_instruc[i][2], list_labels, list_var):
             return 1
         if a_chk_instruction_reg_name("register",dict_instruc[i][1]) or b_chkvariable(dict_instruc[i][2],list_var):
                 return 1
         list_print.append(load(dict_instruc[i][1],dict_instruc[i][2],dict_opcode,dict_register,dict_var))
     elif dict_instruc[i][0]=="st":
+        if len(dict_instruc[i])>3:
+            raise 
         if f_chkvar_label(dict_instruc[i][2], list_labels, list_var):
             return 1
         if a_chk_instruction_reg_name("register",dict_instruc[i][1]) or b_chkvariable(dict_instruc[i][2],list_var):
                 return 1
         list_print.append(store(dict_instruc[i][1],dict_instruc[i][2],dict_opcode,dict_register,dict_var))
     elif dict_instruc[i][0]=="mul":
+        if len(dict_instruc[i])>4:
+            raise 
         if a_chk_instruction_reg_name("register",dict_instruc[i][1]) or a_chk_instruction_reg_name("register",dict_instruc[i][2]) or a_chk_instruction_reg_name("register",dict_instruc[i][3]):
             return 1
         list_print.append(multiplaction(dict_instruc[i][1],dict_instruc[i][2],dict_instruc[i][3],dict_opcode,dict_register))
     elif dict_instruc[i][0]=="div":
+        if len(dict_instruc[i])>3:
+            raise 
         if a_chk_instruction_reg_name("register",dict_instruc[i][1]) or a_chk_instruction_reg_name("register",dict_instruc[i][2]):
             return 1
         list_print.append(division(dict_instruc[i][1],dict_instruc[i][2],dict_opcode,dict_register))
     elif dict_instruc[i][0]=="rs":
+        if len(dict_instruc[i])>3:
+            raise 
         if a_chk_instruction_reg_name("register",dict_instruc[i][1]) or e_chkimmediate(dict_instruc[i][2]):
             return 1
         list_print.append(right_shift(dict_instruc[i][1],dict_instruc[i][2],dict_opcode,dict_register))
     elif dict_instruc[i][0]=="ls":
+        if len(dict_instruc[i])>3:
+            raise 
         if a_chk_instruction_reg_name("register",dict_instruc[i][1]) or e_chkimmediate(dict_instruc[i][2]):
             return 1
         list_print.append(left_shift(dict_instruc[i][1],dict_instruc[i][2],dict_opcode,dict_register))
     elif dict_instruc[i][0]=="xor":
+        if len(dict_instruc[i])>4:
+            raise 
         if a_chk_instruction_reg_name("register",dict_instruc[i][1]) or a_chk_instruction_reg_name("register",dict_instruc[i][2]) or a_chk_instruction_reg_name("register",dict_instruc[i][3]):
             return 1
         list_print.append(xor(dict_instruc[i][1],dict_instruc[i][2],dict_instruc[i][3],dict_opcode,dict_register))
     elif dict_instruc[i][0]=="or":
+        if len(dict_instruc[i])>4:
+            raise 
         if a_chk_instruction_reg_name("register",dict_instruc[i][1]) or a_chk_instruction_reg_name("register",dict_instruc[i][2]) or a_chk_instruction_reg_name("register",dict_instruc[i][3]):
             return 1
         list_print.append(Or(dict_instruc[i][1],dict_instruc[i][2],dict_instruc[i][3],dict_opcode,dict_register))
     elif dict_instruc[i][0]=="and":
+        if len(dict_instruc[i])>4:
+            raise 
         if a_chk_instruction_reg_name("register",dict_instruc[i][1]) or a_chk_instruction_reg_name("register",dict_instruc[i][2]) or a_chk_instruction_reg_name("register",dict_instruc[i][3]):
             return 1
         list_print.append(And(dict_instruc[i][1],dict_instruc[i][2],dict_instruc[i][3],dict_opcode,dict_register))
     elif dict_instruc[i][0]=="not":
+        if len(dict_instruc[i])>3:
+            raise 
         if a_chk_instruction_reg_name("register",dict_instruc[i][1]) or a_chk_instruction_reg_name("register",dict_instruc[i][2]):
             return 1
         list_print.append(invert(dict_instruc[i][1],dict_instruc[i][2],dict_opcode,dict_register))
     elif dict_instruc[i][0]=="cmp":
+        if len(dict_instruc[i])>3:
+            raise 
         if a_chk_instruction_reg_name("register",dict_instruc[i][1]) or a_chk_instruction_reg_name("register",dict_instruc[i][2]):
             return 1
         list_print.append(compare(dict_instruc[i][1],dict_instruc[i][2],dict_opcode,dict_register))
     elif dict_instruc[i][0]=="jmp":
+        if len(dict_instruc[i])>2:
+            raise 
         if f_chklabel_var(dict_instruc[i][1], list_labels, list_var,):
             return 1
         if f_chklabel_mis(dict_instruc[i][1],list_labels):
             return 1
         list_print.append(jmp(dict_instruc[i][1],dict_opcode,dict_instruc,dict_instuc_main))
     elif dict_instruc[i][0]=="jlt":
+        if len(dict_instruc[i])>2:
+            raise 
         if f_chklabel_var(dict_instruc[i][1], list_labels, list_var):
             return 1
         if f_chklabel_mis(dict_instruc[i][1],list_labels):
             return 1
         list_print.append(jlt(dict_instruc[i][1],dict_opcode,dict_instruc,dict_instuc_main))
     elif dict_instruc[i][0]=="jgt":
+        if len(dict_instruc[i])>2:
+            raise 
         if f_chklabel_var(dict_instruc[i][1], list_labels, list_var):
             return 1
         if f_chklabel_mis(dict_instruc[i][1],list_labels):
             return 1
         list_print.append(jgt(dict_instruc[i][1],dict_opcode,dict_instruc,dict_instuc_main))
     elif dict_instruc[i][0]=="je":
+        if len(dict_instruc[i])>2:
+            raise 
         if f_chklabel_var(dict_instruc[i][1], list_labels, list_var):
             return 1
         if f_chklabel_mis(dict_instruc[i][1],list_labels):
             return 1
         list_print.append(je(dict_instruc[i][1],dict_opcode,dict_instruc,dict_instuc_main))
     elif dict_instruc[i][0]=="hlt":
+        if len(dict_instruc[i])>1:
+            raise 
         if h_chkhlt("hlt",i,list(dict_instruc.keys())[-1]):
             return 1
         list_print.append(halt(dict_opcode))
@@ -444,4 +482,5 @@ try:
     print("END ")
 except :
     with open("output.txt","w+") as output_file:
-        output_file.write("Syntax Error: General Syntax Error")
+        output_file.write("Syntax Error: General Syntax Error at line: "+str(int("0b"+str(i),2)+len(list_var)+1))
+        print("END ")
