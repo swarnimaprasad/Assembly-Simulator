@@ -449,9 +449,31 @@ try:
             counter+=1
     list_print=[]
     error=0
+    for j in range(len(list_var)):
+        for i in range(j+1,len(list_var)):
+            if list_var[i]==list_var[j]:
+                list_error.append("Variable defined twice")
+                list_error.append(i-len(list_var))
+                error=1
+                break
+        if error==1:
+            break
+    list_label_2=[]
+    if error!=1:
+        for i in dict_instruc:
+            if type(dict_instruc[i])==dict:
+                list_label_2.append([i,list(dict_instruc[i].keys())[0]])
+        for i in range(len(list_label_2)):
+            for j in range(i+1,len(list_label_2)):
+                if list_label_2[i][1]==list_label_2[j][1]:
+                    list_error.append("Label defined twice")
+                    list_error.append(j)
+                    error=1
+                    break
 
-    if(g_chkvariable_dec(input_start,list_var) or d_chkflags(input_start,list_var) or i_chkhlt_mis(input_start,list_var)):
-        error=1
+    if error!=1:
+        if(g_chkvariable_dec(input_start,list_var) or d_chkflags(input_start,list_var) or i_chkhlt_mis(input_start,list_var)):
+            error=1
 
     if error!=1:
         for i in dict_instruc:
