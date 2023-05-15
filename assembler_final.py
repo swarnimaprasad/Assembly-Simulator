@@ -5,12 +5,6 @@ dict_register=instruct.registers
 
 list_error=[]
 
-
-def h_chkhlt(instruction, pc, last):
-    if instruction == "hlt" and pc != last:
-        list_error.append("Syntax Error: Halt instruction not at the end of program")
-        return True
-    return False
 def a_chk_instruction_reg_name(type, input):
     if type == "instruction":
         if input not in ["add", "sub", "mov", "ld", "st", "mul", "div", "rs", "ls", "xor", "or", "and", "not", "cmp", "jmp", "jlt", "jgt", "je", "hlt"]:
@@ -92,6 +86,12 @@ def g_chkvariable_dec(input_start,input_var):
             return True
         elif i[0]!="var" and check==0:
             pass
+    return False
+
+def h_chkhlt(instruction, pc, last):
+    if instruction == "hlt" and pc != last:
+        list_error.append("Syntax Error: Halt instruction not at the end of program")
+        return True
     return False
 
 def i_chkhlt_mis(input_start,input_var):
@@ -385,7 +385,6 @@ try:
     list_var=[]
     list_labels=[]
     counter=0
-    print(input_start)
     for i in input_start:
         if i==[]:
             counter+=1
@@ -410,7 +409,6 @@ try:
             dict_var[temp]=i[1]
             list_var.append(i[1])
             counter+=1
-    print(dict_instruc)
     list_print=[]
     error=0
 
