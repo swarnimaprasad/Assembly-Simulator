@@ -1,0 +1,5 @@
+var x
+var y
+label1: st R1 x
+label2: st R1 y
+hlt
