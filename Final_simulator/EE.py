@@ -250,6 +250,8 @@ def execute(instruction):
     elif instruction[0:5]=="11111":
         pc=je(instruction[9:16])
     elif instruction[0:5]=="11010":
+        flags_value="0"*16
+        Reg_value[instruct.registers["FLAGS"]]=flags_value
         json_dict=dict()
         json_dict["binary"]=binary
         json_dict={"binary":binary,"error":[]}
