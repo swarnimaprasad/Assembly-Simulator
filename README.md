@@ -4,3 +4,6 @@ The assembler_final.py inside Simple_Assembler folder inside the CO_A_P1 inside 
 
 
 The final_simulator folder contains the simulator which will take binary input as stdin and output the trace as stdout
+
+
+Automated testing works for both simulator and assembler.
