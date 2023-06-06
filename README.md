@@ -7,3 +7,6 @@ The final_simulator folder contains the simulator which will take binary input a
 
 
 Automated testing works for both simulator and assembler.
+
+
+Q3 folder contains folder with simulator code and assembler code for Q3. The assembler takes input from "assembly.txt" file and outputs a "bin.txt" file . The simulator takes "bin.txt" file as input and outputs "trace.txt" file.
